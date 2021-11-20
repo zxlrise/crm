@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiao.crm.dao.CustomerReprieveMapper" >
+  <resultMap id="BaseResultMap" type="com.xiao.crm.vo.CustomerReprieve" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="loss_id" property="lossId" jdbcType="INTEGER" />
+    <result column="measure" property="measure" jdbcType="VARCHAR" />
+    <result column="is_valid" property="isValid" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, loss_id, measure, is_valid, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_customer_reprieve
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_customer_reprieve
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.crm.vo.CustomerReprieve" >
+    insert into t_customer_reprieve (id, loss_id, measure, 
+      is_valid, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{lossId,jdbcType=INTEGER}, #{measure,jdbcType=VARCHAR}, 
+      #{isValid,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.crm.vo.CustomerReprieve" >
+    insert into t_customer_reprieve
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="lossId != null" >
+        loss_id,
+      </if>
+      <if test="measure != null" >
+        measure,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lossId != null" >
+        #{lossId,jdbcType=INTEGER},
+      </if>
+      <if test="measure != null" >
+        #{measure,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.crm.vo.CustomerReprieve" >
+    update t_customer_reprieve
+    <set >
+      <if test="lossId != null" >
+        loss_id = #{lossId,jdbcType=INTEGER},
+      </if>
+      <if test="measure != null" >
+        measure = #{measure,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.crm.vo.CustomerReprieve" >
+    update t_customer_reprieve
+    set loss_id = #{lossId,jdbcType=INTEGER},
+      measure = #{measure,jdbcType=VARCHAR},
+      is_valid = #{isValid,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 多条件查询 -->
+  <select id="selectByParams" parameterType="com.xiao.crm.query.CustomerReprieveQuery" resultType="com.xiao.crm.vo.CustomerReprieve">
+    select
+    <include refid="Base_Column_List"></include>
+    from
+    t_customer_reprieve
+    <where>
+      is_valid = 1
+      <if test="null != lossId">
+        and loss_id = #{lossId}
+      </if>
+    </where>
+  </select>
+
+</mapper>

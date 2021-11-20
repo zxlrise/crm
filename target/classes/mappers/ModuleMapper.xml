@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiao.crm.dao.ModuleMapper" >
+  <resultMap id="BaseResultMap" type="com.xiao.crm.vo.Module" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="module_name" property="moduleName" jdbcType="VARCHAR" />
+    <result column="module_style" property="moduleStyle" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="parent_opt_value" property="parentOptValue" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="INTEGER" />
+    <result column="opt_value" property="optValue" jdbcType="VARCHAR" />
+    <result column="orders" property="orders" jdbcType="INTEGER" />
+    <result column="is_valid" property="isValid" jdbcType="TINYINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, module_name, module_style, url, parent_id, parent_opt_value, grade, opt_value, 
+    orders, is_valid, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_module
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_module
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.crm.vo.Module" >
+    insert into t_module (id, module_name, module_style, 
+      url, parent_id, parent_opt_value, 
+      grade, opt_value, orders, 
+      is_valid, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{moduleName,jdbcType=VARCHAR}, #{moduleStyle,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{parentOptValue,jdbcType=VARCHAR}, 
+      #{grade,jdbcType=INTEGER}, #{optValue,jdbcType=VARCHAR}, #{orders,jdbcType=INTEGER}, 
+      #{isValid,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.crm.vo.Module" >
+    insert into t_module
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="moduleName != null" >
+        module_name,
+      </if>
+      <if test="moduleStyle != null" >
+        module_style,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="parentOptValue != null" >
+        parent_opt_value,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="optValue != null" >
+        opt_value,
+      </if>
+      <if test="orders != null" >
+        orders,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="moduleName != null" >
+        #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleStyle != null" >
+        #{moduleStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="parentOptValue != null" >
+        #{parentOptValue,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="optValue != null" >
+        #{optValue,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null" >
+        #{orders,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.crm.vo.Module" >
+    update t_module
+    <set >
+      <if test="moduleName != null" >
+        module_name = #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleStyle != null" >
+        module_style = #{moduleStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="parentOptValue != null" >
+        parent_opt_value = #{parentOptValue,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="optValue != null" >
+        opt_value = #{optValue,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null" >
+        orders = #{orders,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.crm.vo.Module" >
+    update t_module
+    set module_name = #{moduleName,jdbcType=VARCHAR},
+      module_style = #{moduleStyle,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      parent_opt_value = #{parentOptValue,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=INTEGER},
+      opt_value = #{optValue,jdbcType=VARCHAR},
+      orders = #{orders,jdbcType=INTEGER},
+      is_valid = #{isValid,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 查询所有的资源列表 -->
+  <select id="queryAllModules" resultType="com.xiao.crm.model.TreeModel">
+    select
+        id, parent_id as pId, module_name as name
+    from
+        t_module
+    where
+        is_valid = 1
+  </select>
+  <!-- 查询资源列表 -->
+  <select id="queryModuleList" resultType="com.xiao.crm.vo.Module">
+    select
+      <include refid="Base_Column_List"></include>
+    from
+      t_module
+    where
+      is_valid = 1
+  </select>
+
+  <!-- 通过层级与模块名查询资源对象 -->
+  <select id="queryModuleByGradeAndModuleName" resultType="com.xiao.crm.vo.Module">
+    select
+    <include refid="Base_Column_List"></include>
+    from
+    t_module
+    where
+    is_valid = 1 and grade = #{grade} and module_name = #{moduleName}
+  </select>
+
+  <!-- 通过层级与URL查询资源对象 -->
+  <select id="queryModuleByGradeAndUrl" resultType="com.xiao.crm.vo.Module">
+    select
+    <include refid="Base_Column_List"></include>
+    from
+    t_module
+    where
+    is_valid = 1 and grade = #{grade} and url = #{url}
+  </select>
+
+  <!-- 通过权限码查询资源对象 -->
+  <select id="queryModuleByOptValue" resultType="com.xiao.crm.vo.Module">
+    select
+    <include refid="Base_Column_List"></include>
+    from
+    t_module
+    where
+    is_valid = 1 and opt_value = #{optValue}
+  </select>
+
+  <!-- 查询指定资源是否存在子记录 -->
+  <select id="queryModuleByParentId" parameterType="int" resultType="java.lang.Integer">
+    select
+        count(1)
+    from
+        t_module
+    where
+        is_valid = 1 and parent_id = #{id}
+  </select>
+</mapper>

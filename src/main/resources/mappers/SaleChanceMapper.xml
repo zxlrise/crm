@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiao.crm.dao.SaleChanceMapper" >
+  <resultMap id="BaseResultMap" type="com.xiao.crm.vo.SaleChance" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="chance_source" property="chanceSource" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="cgjl" property="cgjl" jdbcType="INTEGER" />
+    <result column="overview" property="overview" jdbcType="VARCHAR" />
+    <result column="link_man" property="linkMan" jdbcType="VARCHAR" />
+    <result column="link_phone" property="linkPhone" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="create_man" property="createMan" jdbcType="VARCHAR" />
+    <result column="assign_man" property="assignMan" jdbcType="VARCHAR" />
+    <result column="assign_time" property="assignTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="dev_result" property="devResult" jdbcType="INTEGER" />
+    <result column="is_valid" property="isValid" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, chance_source, customer_name, cgjl, overview, link_man, link_phone, description, 
+    create_man, assign_man, assign_time, state, dev_result, is_valid, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sale_chance
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_sale_chance
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.crm.vo.SaleChance" >
+    insert into t_sale_chance (id, chance_source, customer_name, 
+      cgjl, overview, link_man, 
+      link_phone, description, create_man, 
+      assign_man, assign_time, state, 
+      dev_result, is_valid, create_date, 
+      update_date)
+    values (#{id,jdbcType=INTEGER}, #{chanceSource,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{cgjl,jdbcType=INTEGER}, #{overview,jdbcType=VARCHAR}, #{linkMan,jdbcType=VARCHAR}, 
+      #{linkPhone,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createMan,jdbcType=VARCHAR}, 
+      #{assignMan,jdbcType=VARCHAR}, #{assignTime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}, 
+      #{devResult,jdbcType=INTEGER}, #{isValid,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.crm.vo.SaleChance" >
+    insert into t_sale_chance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="chanceSource != null" >
+        chance_source,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="cgjl != null" >
+        cgjl,
+      </if>
+      <if test="overview != null" >
+        overview,
+      </if>
+      <if test="linkMan != null" >
+        link_man,
+      </if>
+      <if test="linkPhone != null" >
+        link_phone,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="createMan != null" >
+        create_man,
+      </if>
+      <if test="assignMan != null" >
+        assign_man,
+      </if>
+      <if test="assignTime != null" >
+        assign_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="devResult != null" >
+        dev_result,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="chanceSource != null" >
+        #{chanceSource,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="cgjl != null" >
+        #{cgjl,jdbcType=INTEGER},
+      </if>
+      <if test="overview != null" >
+        #{overview,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMan != null" >
+        #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null" >
+        #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createMan != null" >
+        #{createMan,jdbcType=VARCHAR},
+      </if>
+      <if test="assignMan != null" >
+        #{assignMan,jdbcType=VARCHAR},
+      </if>
+      <if test="assignTime != null" >
+        #{assignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="devResult != null" >
+        #{devResult,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.crm.vo.SaleChance" >
+    update t_sale_chance
+    <set >
+      <if test="chanceSource != null" >
+        chance_source = #{chanceSource,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="cgjl != null" >
+        cgjl = #{cgjl,jdbcType=INTEGER},
+      </if>
+      <if test="overview != null" >
+        overview = #{overview,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMan != null" >
+        link_man = #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null" >
+        link_phone = #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createMan != null" >
+        create_man = #{createMan,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="devResult != null" >
+        dev_result = #{devResult,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      /*
+         不判断为空！！！
+      */
+      assign_man = #{assignMan,jdbcType=VARCHAR},
+      assign_time = #{assignTime,jdbcType=TIMESTAMP},
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.crm.vo.SaleChance" >
+    update t_sale_chance
+    set chance_source = #{chanceSource,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      cgjl = #{cgjl,jdbcType=INTEGER},
+      overview = #{overview,jdbcType=VARCHAR},
+      link_man = #{linkMan,jdbcType=VARCHAR},
+      link_phone = #{linkPhone,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      create_man = #{createMan,jdbcType=VARCHAR},
+      assign_man = #{assignMan,jdbcType=VARCHAR},
+      assign_time = #{assignTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER},
+      dev_result = #{devResult,jdbcType=INTEGER},
+      is_valid = #{isValid,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <!-- 多条件查询 -->
+  <select id="selectByParams" parameterType="com.xiao.crm.query.SaleChanceQuery" resultType="com.xiao.crm.vo.SaleChance">
+  select
+    s.id, chance_source, customer_name, cgjl, overview, link_man, link_phone, description,
+    create_man, assign_man, assign_time, state, dev_result, s.is_valid, s.create_date, s.update_date
+  , u.user_name as uname
+  from
+      t_sale_chance s
+  left join
+      t_user u
+  on
+       s.assign_man = u.id
+  <where>
+    s.is_valid = 1
+    <if test="customerName != null and customerName != ''">
+      and s.customer_name like concat('%',#{customerName},'%')
+    </if>
+    <if test="createMan != null and createMan != ''">
+      and s.create_man = #{createMan}
+    </if>
+    <if test="state != null ">
+      and s.state = #{state}
+    </if>
+    <!--根据开发状态进行查询-->
+    <if test="devResult != null and devResult != ''">
+      and s.dev_result = #{devResult}
+    </if>
+    <!--根据指派人进行查询-->
+    <if test="assignMan != null ">
+      and s.assign_man = #{assignMan}
+    </if>
+  </where>
+</select>
+  <!--批量删除 (修改操作)-->
+  <update id="deleteBatch">
+    update
+        t_sale_chance
+    set
+        is_valid = 0
+    where
+        id
+    in
+        <foreach collection="array" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
+  </update>
+
+</mapper>

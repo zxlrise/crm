@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiao.crm.dao.CustomerServeMapper" >
+  <resultMap id="BaseResultMap" type="com.xiao.crm.vo.CustomerServe" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="serve_type" property="serveType" jdbcType="VARCHAR" />
+    <result column="overview" property="overview" jdbcType="VARCHAR" />
+    <result column="customer" property="customer" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="service_request" property="serviceRequest" jdbcType="VARCHAR" />
+    <result column="create_people" property="createPeople" jdbcType="VARCHAR" />
+    <result column="assigner" property="assigner" jdbcType="VARCHAR" />
+    <result column="assign_time" property="assignTime" jdbcType="TIMESTAMP" />
+    <result column="service_proce" property="serviceProce" jdbcType="VARCHAR" />
+    <result column="service_proce_people" property="serviceProcePeople" jdbcType="VARCHAR" />
+    <result column="service_proce_time" property="serviceProceTime" jdbcType="TIMESTAMP" />
+    <result column="service_proce_result" property="serviceProceResult" jdbcType="VARCHAR" />
+    <result column="myd" property="myd" jdbcType="VARCHAR" />
+    <result column="is_valid" property="isValid" jdbcType="INTEGER" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, serve_type, overview, customer, state, service_request, create_people, assigner, 
+    assign_time, service_proce, service_proce_people, service_proce_time, service_proce_result, 
+    myd, is_valid, update_date, create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_customer_serve
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_customer_serve
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.crm.vo.CustomerServe" >
+    insert into t_customer_serve (id, serve_type, overview, 
+      customer, state, service_request, 
+      create_people, assigner, assign_time, 
+      service_proce, service_proce_people, service_proce_time, 
+      service_proce_result, myd, is_valid, 
+      update_date, create_date)
+    values (#{id,jdbcType=INTEGER}, #{serveType,jdbcType=VARCHAR}, #{overview,jdbcType=VARCHAR}, 
+      #{customer,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{serviceRequest,jdbcType=VARCHAR}, 
+      #{createPeople,jdbcType=VARCHAR}, #{assigner,jdbcType=VARCHAR}, #{assignTime,jdbcType=TIMESTAMP}, 
+      #{serviceProce,jdbcType=VARCHAR}, #{serviceProcePeople,jdbcType=VARCHAR}, #{serviceProceTime,jdbcType=TIMESTAMP}, 
+      #{serviceProceResult,jdbcType=VARCHAR}, #{myd,jdbcType=VARCHAR}, #{isValid,jdbcType=INTEGER}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.crm.vo.CustomerServe" >
+    insert into t_customer_serve
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serveType != null" >
+        serve_type,
+      </if>
+      <if test="overview != null" >
+        overview,
+      </if>
+      <if test="customer != null" >
+        customer,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="serviceRequest != null" >
+        service_request,
+      </if>
+      <if test="createPeople != null" >
+        create_people,
+      </if>
+      <if test="assigner != null" >
+        assigner,
+      </if>
+      <if test="assignTime != null" >
+        assign_time,
+      </if>
+      <if test="serviceProce != null" >
+        service_proce,
+      </if>
+      <if test="serviceProcePeople != null" >
+        service_proce_people,
+      </if>
+      <if test="serviceProceTime != null" >
+        service_proce_time,
+      </if>
+      <if test="serviceProceResult != null" >
+        service_proce_result,
+      </if>
+      <if test="myd != null" >
+        myd,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serveType != null" >
+        #{serveType,jdbcType=VARCHAR},
+      </if>
+      <if test="overview != null" >
+        #{overview,jdbcType=VARCHAR},
+      </if>
+      <if test="customer != null" >
+        #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceRequest != null" >
+        #{serviceRequest,jdbcType=VARCHAR},
+      </if>
+      <if test="createPeople != null" >
+        #{createPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="assigner != null" >
+        #{assigner,jdbcType=VARCHAR},
+      </if>
+      <if test="assignTime != null" >
+        #{assignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serviceProce != null" >
+        #{serviceProce,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceProcePeople != null" >
+        #{serviceProcePeople,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceProceTime != null" >
+        #{serviceProceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serviceProceResult != null" >
+        #{serviceProceResult,jdbcType=VARCHAR},
+      </if>
+      <if test="myd != null" >
+        #{myd,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.crm.vo.CustomerServe" >
+    update t_customer_serve
+    <set >
+      <if test="serveType != null" >
+        serve_type = #{serveType,jdbcType=VARCHAR},
+      </if>
+      <if test="overview != null" >
+        overview = #{overview,jdbcType=VARCHAR},
+      </if>
+      <if test="customer != null" >
+        customer = #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceRequest != null" >
+        service_request = #{serviceRequest,jdbcType=VARCHAR},
+      </if>
+      <if test="createPeople != null" >
+        create_people = #{createPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="assigner != null" >
+        assigner = #{assigner,jdbcType=VARCHAR},
+      </if>
+      <if test="assignTime != null" >
+        assign_time = #{assignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serviceProce != null" >
+        service_proce = #{serviceProce,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceProcePeople != null" >
+        service_proce_people = #{serviceProcePeople,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceProceTime != null" >
+        service_proce_time = #{serviceProceTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serviceProceResult != null" >
+        service_proce_result = #{serviceProceResult,jdbcType=VARCHAR},
+      </if>
+      <if test="myd != null" >
+        myd = #{myd,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.crm.vo.CustomerServe" >
+    update t_customer_serve
+    set serve_type = #{serveType,jdbcType=VARCHAR},
+      overview = #{overview,jdbcType=VARCHAR},
+      customer = #{customer,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      service_request = #{serviceRequest,jdbcType=VARCHAR},
+      create_people = #{createPeople,jdbcType=VARCHAR},
+      assigner = #{assigner,jdbcType=VARCHAR},
+      assign_time = #{assignTime,jdbcType=TIMESTAMP},
+      service_proce = #{serviceProce,jdbcType=VARCHAR},
+      service_proce_people = #{serviceProcePeople,jdbcType=VARCHAR},
+      service_proce_time = #{serviceProceTime,jdbcType=TIMESTAMP},
+      service_proce_result = #{serviceProceResult,jdbcType=VARCHAR},
+      myd = #{myd,jdbcType=VARCHAR},
+      is_valid = #{isValid,jdbcType=INTEGER},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByParams" parameterType="com.xiao.crm.query.CustomerServeQuery" resultType="com.xiao.crm.vo.CustomerServe">
+    select
+    cs.*,d.data_dic_value as dicValue
+    from
+    t_customer_serve cs
+    left join
+    t_datadic d
+    on
+    cs.serve_type = d.id
+    <where>
+      cs.is_valid=1
+      <if test="null != customer and customer != ''">
+        and customer like concat('%',#{customer},'%')
+      </if>
+      <if test="null != serveType">
+        and serve_type  = #{serveType}
+      </if>
+      <if test="null != state and state != ''">
+        and state = #{state}
+      </if>
+      <if test="null != assigner">
+        and assigner = #{assigner}
+      </if>
+    </where>
+  </select>
+
+  <select id="countCustomerServeMake" resultType="map">
+    SELECT
+        d.data_dic_value AS dicValue, COUNT(1) total
+    FROM
+        t_customer_serve cs
+    LEFT JOIN
+        t_datadic d
+    ON
+	    cs.serve_type = d.id
+    WHERE
+        cs.is_valid = 1
+    GROUP BY
+	    data_dic_value
+  </select>
+</mapper>

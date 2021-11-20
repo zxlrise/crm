@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!--
+        数据库驱动
+            在左侧project边栏的External Libraries中找到mysql的驱动，右键选择copy path
+    -->
+    <classPathEntry  location="E:\my_java\maven_repository\mysql\mysql-connector-java\8.0.25\mysql-connector-java-8.0.25.jar"/>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+
+        <commentGenerator>
+            <!-- 是否去除日期那行注释 -->
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库链接地址账号密码 -->
+        <jdbcConnection
+                driverClass="com.mysql.cj.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/crm?characterEncoding=utf-8"
+                userId="root"
+                password="root">
+                <!-- 仅仅查询当前库的表，不去查询其他库 -->
+                <property name="nullCatalogMeansCurrent" value="true" />
+        </jdbcConnection>
+
+        <!--
+             java类型处理器
+                用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
+                注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和NUMERIC数据类型；
+                true：使用 BigDecimal对应DECIMAL和NUMERIC数据类型
+                false：默认，把JDBC DECIMAL和NUMERIC类型解析为Integer
+        -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+
+
+        <!-- 生成Model类存放位置 -->
+        <javaModelGenerator targetPackage="com.xiao.crm.vo" targetProject="src/main/java">
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="true"/>
+            <!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+
+        <!--生成Dao类存放位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.xiao.crm.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <table tableName="t_customer_serve" domainObjectName="CustomerServe"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+
+    </context>
+</generatorConfiguration>
+

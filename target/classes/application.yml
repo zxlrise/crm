@@ -1,0 +1,47 @@
+## 端口号	上下文路径
+server:
+  port: 8080
+  servlet:
+    context-path: /crm
+
+
+## 数据源配置
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/crm?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+
+  ## freemarker
+  freemarker:
+    suffix: .ftl
+    content-type: text/html
+    charset: UTF-8
+    template-loader-path: classpath:/views/
+
+
+  ## 启用热部署
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+## mybatis 配置
+mybatis:
+  mapper-locations: classpath:/mappers/*.xml
+  type-aliases-package: com.xiao.crm.vo;com.xiao.crm.query;com.xiao.crm.dto
+  configuration:
+    map-underscore-to-camel-case: true
+
+## pageHelper 分页
+pagehelper:
+  helper-dialect: mysql
+
+## 设置 dao 日志打印级别
+logging:
+  level:
+    com:
+      xiao:
+        crm:
+          dao: debug

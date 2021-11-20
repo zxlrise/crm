@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiao.crm.dao.CustomerOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.xiao.crm.vo.CustomerOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cus_id" property="cusId" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="order_date" property="orderDate" jdbcType="TIMESTAMP" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="is_valid" property="isValid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cus_id, order_no, order_date, address, state, create_date, update_date, is_valid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_customer_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_customer_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.crm.vo.CustomerOrder" >
+    insert into t_customer_order (id, cus_id, order_no, 
+      order_date, address, state, 
+      create_date, update_date, is_valid
+      )
+    values (#{id,jdbcType=INTEGER}, #{cusId,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, 
+      #{orderDate,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{isValid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.crm.vo.CustomerOrder" >
+    insert into t_customer_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cusId != null" >
+        cus_id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="orderDate != null" >
+        order_date,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cusId != null" >
+        #{cusId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null" >
+        #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.crm.vo.CustomerOrder" >
+    update t_customer_order
+    <set >
+      <if test="cusId != null" >
+        cus_id = #{cusId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null" >
+        order_date = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.crm.vo.CustomerOrder" >
+    update t_customer_order
+    set cus_id = #{cusId,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      order_date = #{orderDate,jdbcType=TIMESTAMP},
+      address = #{address,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      is_valid = #{isValid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 多条件查询 -->
+  <select id="selectByParams" parameterType="com.xiao.crm.query.CustomerOrderQuery" resultType="com.xiao.crm.vo.CustomerOrder">
+    select
+    <include refid="Base_Column_List"></include>
+    from
+    t_customer_order
+    <where>
+      is_valid = 1
+      <if test="null != cusId">
+        and cus_id = #{cusId}
+      </if>
+    </where>
+  </select>
+
+  <!-- 通过订单ID查询对应的订单记录 -->
+  <select id="queryOrderById" parameterType="int" resultType="java.util.Map">
+    SELECT
+        o.id,
+        o.order_no,
+        o.address,
+        CASE
+            WHEN o.state = 1 THEN '已支付'
+            WHEN o.state = 0 THEN '未支付'
+        END status ,
+        sum(od.sum) total
+    FROM
+        t_customer_order o
+    LEFT JOIN
+        t_order_details od
+    ON
+        o.id = od.order_id
+    WHERE
+        o.is_valid = 1
+        AND o.id = #{orderId}
+        AND od.is_valid = 1
+  </select>
+
+  <!-- 查询指定客户的最后一条订单记录 -->
+  <select id="queryLossCustomerOrderByCustomerId" parameterType="int" resultType="com.xiao.crm.vo.CustomerOrder">
+    SELECT *
+    FROM t_customer_order
+    WHERE is_valid = 1 AND cus_id = 20
+    ORDER BY order_date DESC
+    LIMIT 1
+  </select>
+
+
+
+</mapper>

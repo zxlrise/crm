@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiao.crm.dao.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.xiao.crm.vo.Customer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="khno" property="khno" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="cus_manager" property="cusManager" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="myd" property="myd" jdbcType="VARCHAR" />
+    <result column="xyd" property="xyd" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="post_code" property="postCode" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="web_site" property="webSite" jdbcType="VARCHAR" />
+    <result column="yyzzzch" property="yyzzzch" jdbcType="VARCHAR" />
+    <result column="fr" property="fr" jdbcType="VARCHAR" />
+    <result column="zczj" property="zczj" jdbcType="VARCHAR" />
+    <result column="nyye" property="nyye" jdbcType="VARCHAR" />
+    <result column="khyh" property="khyh" jdbcType="VARCHAR" />
+    <result column="khzh" property="khzh" jdbcType="VARCHAR" />
+    <result column="dsdjh" property="dsdjh" jdbcType="VARCHAR" />
+    <result column="gsdjh" property="gsdjh" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="is_valid" property="isValid" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, khno, name, area, cus_manager, level, myd, xyd, address, post_code, phone, fax, 
+    web_site, yyzzzch, fr, zczj, nyye, khyh, khzh, dsdjh, gsdjh, state, is_valid, create_date, 
+    update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_customer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_customer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.crm.vo.Customer" >
+    insert into t_customer (id, khno, name, 
+      area, cus_manager, level, 
+      myd, xyd, address, 
+      post_code, phone, fax, 
+      web_site, yyzzzch, fr, 
+      zczj, nyye, khyh, khzh, 
+      dsdjh, gsdjh, state, 
+      is_valid, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{khno,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{cusManager,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, 
+      #{myd,jdbcType=VARCHAR}, #{xyd,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{postCode,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, 
+      #{webSite,jdbcType=VARCHAR}, #{yyzzzch,jdbcType=VARCHAR}, #{fr,jdbcType=VARCHAR}, 
+      #{zczj,jdbcType=VARCHAR}, #{nyye,jdbcType=VARCHAR}, #{khyh,jdbcType=VARCHAR}, #{khzh,jdbcType=VARCHAR}, 
+      #{dsdjh,jdbcType=VARCHAR}, #{gsdjh,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{isValid,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.crm.vo.Customer" >
+    insert into t_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="khno != null" >
+        khno,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="cusManager != null" >
+        cus_manager,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="myd != null" >
+        myd,
+      </if>
+      <if test="xyd != null" >
+        xyd,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="postCode != null" >
+        post_code,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="webSite != null" >
+        web_site,
+      </if>
+      <if test="yyzzzch != null" >
+        yyzzzch,
+      </if>
+      <if test="fr != null" >
+        fr,
+      </if>
+      <if test="zczj != null" >
+        zczj,
+      </if>
+      <if test="nyye != null" >
+        nyye,
+      </if>
+      <if test="khyh != null" >
+        khyh,
+      </if>
+      <if test="khzh != null" >
+        khzh,
+      </if>
+      <if test="dsdjh != null" >
+        dsdjh,
+      </if>
+      <if test="gsdjh != null" >
+        gsdjh,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="khno != null" >
+        #{khno,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="cusManager != null" >
+        #{cusManager,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="myd != null" >
+        #{myd,jdbcType=VARCHAR},
+      </if>
+      <if test="xyd != null" >
+        #{xyd,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="webSite != null" >
+        #{webSite,jdbcType=VARCHAR},
+      </if>
+      <if test="yyzzzch != null" >
+        #{yyzzzch,jdbcType=VARCHAR},
+      </if>
+      <if test="fr != null" >
+        #{fr,jdbcType=VARCHAR},
+      </if>
+      <if test="zczj != null" >
+        #{zczj,jdbcType=VARCHAR},
+      </if>
+      <if test="nyye != null" >
+        #{nyye,jdbcType=VARCHAR},
+      </if>
+      <if test="khyh != null" >
+        #{khyh,jdbcType=VARCHAR},
+      </if>
+      <if test="khzh != null" >
+        #{khzh,jdbcType=VARCHAR},
+      </if>
+      <if test="dsdjh != null" >
+        #{dsdjh,jdbcType=VARCHAR},
+      </if>
+      <if test="gsdjh != null" >
+        #{gsdjh,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.crm.vo.Customer" >
+    update t_customer
+    <set >
+      <if test="khno != null" >
+        khno = #{khno,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="cusManager != null" >
+        cus_manager = #{cusManager,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="myd != null" >
+        myd = #{myd,jdbcType=VARCHAR},
+      </if>
+      <if test="xyd != null" >
+        xyd = #{xyd,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        post_code = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="webSite != null" >
+        web_site = #{webSite,jdbcType=VARCHAR},
+      </if>
+      <if test="yyzzzch != null" >
+        yyzzzch = #{yyzzzch,jdbcType=VARCHAR},
+      </if>
+      <if test="fr != null" >
+        fr = #{fr,jdbcType=VARCHAR},
+      </if>
+      <if test="zczj != null" >
+        zczj = #{zczj,jdbcType=VARCHAR},
+      </if>
+      <if test="nyye != null" >
+        nyye = #{nyye,jdbcType=VARCHAR},
+      </if>
+      <if test="khyh != null" >
+        khyh = #{khyh,jdbcType=VARCHAR},
+      </if>
+      <if test="khzh != null" >
+        khzh = #{khzh,jdbcType=VARCHAR},
+      </if>
+      <if test="dsdjh != null" >
+        dsdjh = #{dsdjh,jdbcType=VARCHAR},
+      </if>
+      <if test="gsdjh != null" >
+        gsdjh = #{gsdjh,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.crm.vo.Customer" >
+    update t_customer
+    set khno = #{khno,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      cus_manager = #{cusManager,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      myd = #{myd,jdbcType=VARCHAR},
+      xyd = #{xyd,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      post_code = #{postCode,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      web_site = #{webSite,jdbcType=VARCHAR},
+      yyzzzch = #{yyzzzch,jdbcType=VARCHAR},
+      fr = #{fr,jdbcType=VARCHAR},
+      zczj = #{zczj,jdbcType=VARCHAR},
+      nyye = #{nyye,jdbcType=VARCHAR},
+      khyh = #{khyh,jdbcType=VARCHAR},
+      khzh = #{khzh,jdbcType=VARCHAR},
+      dsdjh = #{dsdjh,jdbcType=VARCHAR},
+      gsdjh = #{gsdjh,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      is_valid = #{isValid,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 多条件查询 -->
+  <select id="selectByParams" parameterType="com.xiao.crm.query.CustomerQuery" resultType="com.xiao.crm.vo.Customer">
+    select
+    <include refid="Base_Column_List"></include>
+    from
+    t_customer
+    <where>
+      is_valid = 1 and state = 0
+      <if test="null != customerName and customerName != ''">
+        and name like concat('%',#{customerName},'%')
+      </if>
+      <if test="null != customerNo and customerNo != ''">
+        and khno = #{customerNo}
+      </if>
+      <if test="null != level and level != ''">
+        and level = #{level}
+      </if>
+    </where>
+  </select>
+
+  <!-- 通过客户名称查询客户对象 -->
+  <select id="queryCustomerByName" parameterType="string" resultType="com.xiao.crm.vo.Customer">
+    select
+    <include refid="Base_Column_List"></include>
+    from
+    t_customer
+    where
+    is_valid = 1 and name = #{name}
+  </select>
+
+
+  <!--
+    流失客户规则定义：
+		客户自创建起，超过六个月未与企业产生任何订单或者客户最后下单日期距离现在超过六个月的客户定义为流失客户。
+
+	规则分析：
+		1. 客户数据录入到系统的时间距离现在的时间超过6个月 （前提条件）
+		2. 客户与公司没有产生（已支付）订单记录 || 客户最后下单时间距离现在时间超过6个月
+			2.1 查询没有订单记录的客户
+			2.2 查询最后的订单时间距离现在时间超过6个月的客户
+			实现思路：
+				查询2.1 与 2.2的客户，并去除重复数据
+			具体实现：
+				等价于查询2.1 与 2.2的记录   反向查询 （推荐使用）
+				查询产生过订单记录并且最后的下单时间距离现在时间不超过6个月的客户，然后再从客户表中排除这些客户
+		注：在（1）前提条件的基础上，满足（2）下面的两种情况
+
+	SQL查询分析：
+		DATE_ADD()函数
+			作用：向日期添加指定的时间间隔。
+			格式：DATE_ADD(date, INTERVAL expr type)
+			属性：
+				date参数是合法的日期表达式。
+				expr参数是添加的时间的间隔。
+				type参数表示类型。可以是YEAR（年）、MONTH（月）、DAY（日）、时分秒等。
+			示例：向当前时间添加6个月。
+				DATE_ADD(NOW(),INTERVAL 6 MONTH)
+   -->
+  <select id="queryLossCustomers" resultType="com.xiao.crm.vo.Customer">
+    SELECT *
+    FROM t_customer c
+    WHERE is_valid = 1 and state = 0 AND DATE_ADD(c.create_date,INTERVAL 6 MONTH) &lt; NOW()
+    AND c.id NOT IN (
+      SELECT DISTINCT cus_id
+      FROM t_customer_order o
+      WHERE is_valid = 1 AND o.state = 1 AND DATE_ADD(o.order_date,INTERVAL 6 MONTH) &gt; NOW()
+    )
+  </select>
+
+
+  <!-- 批量更新客户的流失状态 -->
+  <update id="updateCustomerStateByIds" >
+    update
+    t_customer
+    set
+    state = 1
+    where
+    id in
+    <foreach collection="list" item="item" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
+  </update>
+
+  <!-- 查询客户贡献数据 -->
+  <select id="queryCustomerContributionByParams" parameterType="com.xiao.crm.query.CustomerQuery" resultType="map">
+    SELECT
+    c.`name`,sum(od.sum) total
+    FROM
+    t_customer c
+    LEFT JOIN
+    t_customer_order o
+    ON
+    c.id = o.cus_id
+    LEFT JOIN
+    t_order_details od
+    ON
+    o.id = od.order_id
+    <where>
+      c.is_valid = 1 AND c.state = 0 AND o.is_valid = 1 AND o.state = 1 AND od.is_valid = 1
+      <if test="null != customerName and customerName != ''">
+        and c.name like concat('%',#{customerName},'%')
+      </if>
+      <if test="null != time and time != ''">
+        and o.order_date &gt; #{time}
+      </if>
+    </where>
+    GROUP BY
+    c.`name`
+    <if test="null != type">
+      <if test="type==1">
+        HAVING total &gt;= 0 and total &lt;= 1000
+      </if>
+      <if test="type==2">
+        HAVING total &gt; 1000 and total &lt;= 3000
+      </if>
+      <if test="type==3">
+        HAVING total &gt; 3000 and total &lt;= 5000
+      </if>
+      <if test="type==4">
+        HAVING total &gt; 5000
+      </if>
+    </if>
+    ORDER BY
+    total desc
+
+  </select>
+
+  <!-- 查询客户构成 -->
+  <select id="countCustomerMake" resultType="map">
+    SELECT
+        `level`,count(1) total
+    FROM
+        t_customer
+    WHERE
+        is_valid = 1
+    AND
+        state = 0
+    GROUP BY
+	`level`
+  </select>
+
+
+</mapper>

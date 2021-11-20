@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiao.crm.dao.CustomerLossMapper" >
+  <resultMap id="BaseResultMap" type="com.xiao.crm.vo.CustomerLoss" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cus_no" property="cusNo" jdbcType="VARCHAR" />
+    <result column="cus_name" property="cusName" jdbcType="VARCHAR" />
+    <result column="cus_manager" property="cusManager" jdbcType="VARCHAR" />
+    <result column="last_order_time" property="lastOrderTime" jdbcType="DATE" />
+    <result column="confirm_loss_time" property="confirmLossTime" jdbcType="DATE" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="loss_reason" property="lossReason" jdbcType="VARCHAR" />
+    <result column="is_valid" property="isValid" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cus_no, cus_name, cus_manager, last_order_time, confirm_loss_time, state, loss_reason, 
+    is_valid, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_customer_loss
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_customer_loss
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiao.crm.vo.CustomerLoss" >
+    insert into t_customer_loss (id, cus_no, cus_name, 
+      cus_manager, last_order_time, confirm_loss_time, 
+      state, loss_reason, is_valid, 
+      create_date, update_date)
+    values (#{id,jdbcType=INTEGER}, #{cusNo,jdbcType=VARCHAR}, #{cusName,jdbcType=VARCHAR}, 
+      #{cusManager,jdbcType=VARCHAR}, #{lastOrderTime,jdbcType=DATE}, #{confirmLossTime,jdbcType=DATE}, 
+      #{state,jdbcType=INTEGER}, #{lossReason,jdbcType=VARCHAR}, #{isValid,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiao.crm.vo.CustomerLoss" >
+    insert into t_customer_loss
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cusNo != null" >
+        cus_no,
+      </if>
+      <if test="cusName != null" >
+        cus_name,
+      </if>
+      <if test="cusManager != null" >
+        cus_manager,
+      </if>
+      <if test="lastOrderTime != null" >
+        last_order_time,
+      </if>
+      <if test="confirmLossTime != null" >
+        confirm_loss_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="lossReason != null" >
+        loss_reason,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cusNo != null" >
+        #{cusNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cusName != null" >
+        #{cusName,jdbcType=VARCHAR},
+      </if>
+      <if test="cusManager != null" >
+        #{cusManager,jdbcType=VARCHAR},
+      </if>
+      <if test="lastOrderTime != null" >
+        #{lastOrderTime,jdbcType=DATE},
+      </if>
+      <if test="confirmLossTime != null" >
+        #{confirmLossTime,jdbcType=DATE},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="lossReason != null" >
+        #{lossReason,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiao.crm.vo.CustomerLoss" >
+    update t_customer_loss
+    <set >
+      <if test="cusNo != null" >
+        cus_no = #{cusNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cusName != null" >
+        cus_name = #{cusName,jdbcType=VARCHAR},
+      </if>
+      <if test="cusManager != null" >
+        cus_manager = #{cusManager,jdbcType=VARCHAR},
+      </if>
+      <if test="lastOrderTime != null" >
+        last_order_time = #{lastOrderTime,jdbcType=DATE},
+      </if>
+      <if test="confirmLossTime != null" >
+        confirm_loss_time = #{confirmLossTime,jdbcType=DATE},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="lossReason != null" >
+        loss_reason = #{lossReason,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiao.crm.vo.CustomerLoss" >
+    update t_customer_loss
+    set cus_no = #{cusNo,jdbcType=VARCHAR},
+      cus_name = #{cusName,jdbcType=VARCHAR},
+      cus_manager = #{cusManager,jdbcType=VARCHAR},
+      last_order_time = #{lastOrderTime,jdbcType=DATE},
+      confirm_loss_time = #{confirmLossTime,jdbcType=DATE},
+      state = #{state,jdbcType=INTEGER},
+      loss_reason = #{lossReason,jdbcType=VARCHAR},
+      is_valid = #{isValid,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 批量添加 -->
+  <insert id="insertBatch">
+    insert into
+    t_customer_loss (cus_no, cus_name, cus_manager, last_order_time, confirm_loss_time, state, loss_reason, is_valid, create_date, update_date)
+    values
+    <foreach collection="list" separator="," item="item">
+      (#{item.cusNo},#{item.cusName},#{item.cusManager},#{item.lastOrderTime},#{item.confirmLossTime},#{item.state},#{item.lossReason},1,now(),now())
+    </foreach>
+  </insert>
+
+  <!-- 多条件查询 -->
+  <select id="selectByParams" parameterType="com.xiao.crm.query.CustomerLossQuery" resultType="com.xiao.crm.vo.CustomerLoss">
+  select
+  <include refid="Base_Column_List"></include>
+  from
+  t_customer_loss
+  <where>
+    is_valid = 1
+    <if test="null != customerNo and customerNo != ''">
+      and cus_no = #{customerNo}
+    </if>
+    <if test="null != customerName and customerName != ''">
+      and cus_name like concat('%',#{customerName},'%')
+    </if>
+    <if test="null != state">
+      and state = #{state}
+    </if>
+  </where>
+  </select>
+</mapper>
